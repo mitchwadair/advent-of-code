@@ -10,6 +10,9 @@ if (args.length !== 2) {
 }
 
 exec(`node ${resolve(process.cwd(), args[0], args[1], "solution.js")}`, (err, out) => {
-    if (err) exit(1);
+    if (err) {
+        console.error(err);
+        exit(1);
+    }
     console.log(out);
 });
