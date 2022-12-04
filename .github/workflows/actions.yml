@@ -9,8 +9,9 @@ on:
 
 jobs:
     update:
-        matrix:
-            year: [2022]
+        strategy:
+            matrix:
+                year: [2022]
 
         runs-on: ubuntu-latest
         steps:
