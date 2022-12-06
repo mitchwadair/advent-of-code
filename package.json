@@ -4,7 +4,8 @@
   "description": "Advent of Code Solutions",
   "type": "module",
   "scripts": {
-    "solve": "node ./scripts/run.js"
+    "solve": "node ./scripts/run.js",
+    "create": "node ./scripts/boilerplate.js"
   },
   "author": "Mitchell Adair",
   "license": "MIT"
