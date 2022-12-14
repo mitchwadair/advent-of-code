@@ -1,6 +1,6 @@
 # Advent of Code
 
-![](https://img.shields.io/badge/stars%202022%20⭐-16-yellow)
+![](https://img.shields.io/badge/stars%202022%20⭐-17-yellow)
 
 This repository contains my solutions for the [Advent of Code](https://adventofcode.com/)
 
