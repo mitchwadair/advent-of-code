@@ -90,23 +90,18 @@ const getMovableNeighbors = (x, y) => {
 
 const findPath = (startNode) => {
     const constructPath = (node) => {
-        const path = [`${node.x},${node.y}`];
-        let temp = path[0];
-        while (Object.keys(prevNode).includes(temp)) {
-            const { x, y } = prevNode[temp];
-            temp = `${x},${y}`;
+        const path = [];
+        let temp = node;
+        while (temp) {
+            temp = temp.prevNode;
             path.push(temp);
         }
         return path;
     };
     let nodes = [{ x: startNode[1], y: startNode[0], hScore: getHeuristicScore(startNode[1], startNode[0]) }];
-    const prevNode = {};
 
     const distScores = {};
     distScores[`${nodes[0].x},${nodes[0].y}`] = 0;
-
-    const potential = {};
-    potential[`${nodes[0].x},${nodes[0].y}`] = nodes[0].hScore;
 
     while (nodes.length > 0) {
         const current = nodes.shift();
@@ -119,12 +114,12 @@ const findPath = (startNode) => {
             const nKey = `${neighbor.x},${neighbor.y}`;
             const distScore = distScores[cKey] + 1;
             if (!distScores[nKey] || distScore < distScores[nKey]) {
-                prevNode[nKey] = current;
+                neighbor.prevNode = current;
+                neighbor.potential = distScore + neighbor.hScore;
                 distScores[nKey] = distScore;
-                potential[nKey] = distScore + neighbor.hScore;
                 if (!nodes.includes(neighbor)) {
                     nodes.push(neighbor);
-                    nodes.sort((n1, n2) => potential[`${n1.x},${n1.y}`] - potential[`${n2.x},${n2.y}`]);
+                    nodes.sort((n1, n2) => n1.potential - n2.potential);
                 }
             }
         });
